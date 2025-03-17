@@ -1,0 +1,63 @@
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ysabeau:ital,wght@0,1..1000;1,1..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<header class="header">
+    <div class="topbar-logo" onclick="goToStudents()">
+        <img src="/images/logo.png" alt="logo">
+        <span class="site-name">unicontact</span>
+    </div>
+    
+    <div class="right">
+        <div class="notifications" onmouseover="showNotifications()" onmouseout="hideNotifications()">
+            <div class="bell">
+                <!--                                    redirectToMessages -->
+                <button class="bell-container" onclick="animatedBell()">
+                    <i class="fa-regular fa-bell"></i>
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="indicator"></span> 
+                </button>
+            </div>                       
+            <div class="notifications-popup" id="notifications-popup">
+                <span class="rec-mes">Recent messages</span>
+                <ul id="notifications-list">
+                    <li>
+                        <img src="/images/avatar1.jpg" alt="avatar">
+                        <span class="avatar-name">Andrii</span>
+                        <span class="rec-message">Гослінг топ</span>
+                    </li>
+                    <li>
+                        <img src="/images/avatar2.jpg" alt="avatar">
+                        <span class="avatar-name">Vitko</span>
+                        <span class="rec-message">Ти лох</span>
+                    </li>
+                    <li>
+                        <img src="/images/avatar3.jpg" alt="avatar">
+                        <span class="avatar-name">Julia</span>
+                        <span class="rec-message">Кохаю Тараса</span>
+                    </li>
+                </ul>
+            </div>
+        </div>        
+        
+        <div class="user-profile" onmouseover="showProfileMenu()" onmouseout="hideProfileMenu()">
+            <span class="username">Mariia Lytvyn</span>
+            <img src="/images/userphoto.png" alt="User Avatar">
+            <div class="profile-menu" id="profile-menu">
+                <a href="#">View Profile</a>
+                <button name="logOut">LogOut</button>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+    <link rel="stylesheet" href="/header/header.css">
+    <link rel="stylesheet" href="students.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+</head>
+
+<body>
+    <div id="header">
+    <script>
+        fetch('/header/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+            })
+            .catch(error => console.error("Error loading header:", error));
+    </script>
+    </div>
+    <div class="container">
+        <header>
+            <div class="burger-menu" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>            
+        </header>
+        <nav class="side-menu">
+            <ul>
+                <li><a href="/dashboard/dashboard.html">Dashboard</a></li>
+                <li><a href="#"><span class="currentPage">Students</span></a></li>
+                <li><a href="/tasks/tasks.html">Tasks</a></li>
+            </ul>
+        </nav>
+        <main>
+        <div class="upper">
+            <h1>Students</h1>
+            <div class="buttons">
+                <button class="addStudentButton" onclick="openStudentModal()">
+                    <img src="/images/add.png" alt="Add student"/>
+                </button>
+                <button class="deleteStudentButton" onclick="openDeleteSelectedModal()">
+                    <img src="/images/delete-all.png" alt="delete selected students"/>
+                </button>                
+            </div>
+        </div>
+        <table class="students-table">
+            <thead>
+                <tr>
+                    <th><label for="select-all"><input type="checkbox" id="select-all"> Select all</label></th>
+                    <th>Group</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Birthday</th>
+                    <th>Status</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody id="students-list">
+            </tbody>
+        </table>
+        
+        <div class="pagination" id="paginationContainer">
+            <button id="prevPage" class="pagination-btn">← Prev</button>
+            <button id="nextPage" class="pagination-btn">Next →</button>
+        </div>      
+
+            <div id="studentModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeStudentModal()">&times;</span>
+                    <h2 id="modalTitle">Add Student</h2>
+                    <form id="studentForm" lang="en">
+                        <label for="group">Group:</label>
+                        <input type="text" id="group" required="">
+
+                        <label for="firstName">First Name:</label>
+                        <input type="text" id="firstName" required="">
+
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" id="lastName" required="">
+
+                        <label for="gender">Gender:</label>
+                        <select id="gender" required="">
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+
+                        <label for="birthDate">Birthday:</label>
+                        <input type="date" id="birthDate" required="">
+
+                        <button type="button" id="cancelButton" onclick="closeStudentModal()">Cancel</button>
+                        <button type="submit" id="saveStudentButton">Save</button>
+                        
+                    </form>
+                </div>
+            </div>
+
+            <div id="deleteModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeDeleteModal()">&times;</span>
+                    <h2>Delete Student</h2>
+                    <p>Are you sure you want to delete student?</p>
+                    <button type="button" id="cancelDeleteButton" onclick="closeDeleteModal()">Cancel</button>
+                    <button type="submit" id="deleteStudentButton" onclick="deleteStudent()">Delete</button>
+                </div>
+            </div>
+
+            <div id="deleteSelectedModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeDeleteSelectedModal()">&times;</span>
+                    <h2>Delete Students</h2>
+                    <p>Are you sure you want to delete selected students?</p>
+                    <button type="button" id="cancelSelectedDeleteButton" onclick="closeDeleteSelectedModal()">Cancel</button>
+                    <button type="submit" id="deleteSelectedStudentButton" onclick="deleteSelectedStudents()">Delete</button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    <script src="/header/header.js"></script>
+    <script src="students.js"></script>
+</body>
+</html>

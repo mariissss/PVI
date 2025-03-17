@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Головна</title>
+    <link rel="stylesheet" href="/header/header.css">
+</head>
+<body>
+    <div id="header"></div>
+    <script>
+        fetch('/header/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+            })
+            .catch(error => console.error("Error loading header:", error));
+    </script>
+    <div class="container">
+        <h1>Вітаємо у системі управління студентами</h1>
+        <p><a href="/students/students.html">Перейти до списку студентів</a></p>
+    </div>
+    <script src="/header/header.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+.side-menu {
+    position: fixed; 
+    top: 80px; 
+    left: 0;
+    width: 225px; 
+    height: calc(100vh - 80px); 
+    background-color: #444; 
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 9;
+}
+
+.side-menu ul {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-menu ul li {
+    padding: 1px 0;
+}
+
+.side-menu ul li a {
+    position: relative;
+    font-family: "Dosis", serif;
+    font-size: 23px;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #f2ecc6;
+    display: block;
+    padding: 10px 20px;
+    transition: color 0.3s ease-in-out;
+}
+
+.side-menu ul li a::after {
+    content: "";
+    position: absolute;
+    left: 20px; 
+    bottom: 0;
+    width: 0; 
+    height: 2px; 
+    background: #f2ecc6; 
+    transition: width 0.5s ease-in-out; 
+}
+
+.side-menu ul li a:hover::after {
+    width: calc(100% - 40px);
+}
+
+.side-menu .current {
+    font-weight: bold;
+    color: #ff0000; 
+}
