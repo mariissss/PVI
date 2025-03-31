@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("studentModal").style.display = "none";
     document.getElementById("deleteModal").style.display = "none";
     document.getElementById("deleteSelectedModal").style.display = "none";
+    document.getElementById("errorModal").style.display = "none";
     renderStudents();
     renderPagination();
 
@@ -124,13 +125,15 @@ function createPageButton(text, pageNumber) {
 
 function createStudentRow(student, index) {
     const row = document.createElement("tr");
+    const status = index % 2 === 0 ? "active" : "inactive";
+    
     row.innerHTML = `    
         <td><label for="checkbox-${index}">Select</label><input type="checkbox" id="checkbox-${index}"></td>
         <td>${student.group}</td>
         <td>${student.firstName} ${student.lastName}</td>
         <td>${student.gender}</td>
         <td>${student.birthDate}</td>
-        <td><span class="status ${student.status}"></span></td>
+        <td><span class="status ${status}"></span></td>
         <td>
             <button class="edit-btn" onclick="openStudentModal(true, ${index})">
                 <img src="/images/edit.png" alt="Edit" width="20">
@@ -144,6 +147,8 @@ function createStudentRow(student, index) {
 }
 
 
+
+
 function openStudentModal(isEdit, studentIndex = -1) {
     const students = JSON.parse(localStorage.getItem('students')) || [];
     console.log('openStudent...')
@@ -154,6 +159,7 @@ function openStudentModal(isEdit, studentIndex = -1) {
         editingIndex = studentIndex;
         const student = students[studentIndex];
         modalTitle.textContent = "Edit Student";
+        document.getElementById('studentId').value = student.id;
         document.getElementById("group").value = student.group;
         document.getElementById("firstName").value = student.firstName;
         document.getElementById("lastName").value = student.lastName;
@@ -182,6 +188,18 @@ studentForm.addEventListener("submit", function(event) {
     saveStudent();
 });
 
+function generateStudentID() {
+    let students = JSON.parse(localStorage.getItem('students')) || [];
+    let existingIDs = new Set(students.map(s => s.id)); 
+    
+    let newID;
+    do {
+        newID = Math.floor(10000 + Math.random() * 90000); 
+    } while (existingIDs.has(newID)); 
+
+    return newID;
+}
+
 function saveStudent() { 
 
     let students = JSON.parse(localStorage.getItem('students')) || [];
@@ -192,11 +210,38 @@ function saveStudent() {
     const gender = document.getElementById("gender").value;
     const birthDate = document.getElementById("birthDate").value;
 
+    const nameRegex = /^[А-ЯІЇЄҐа-яіїєґA-Za-z'-]+$/u;
+    const groupRegex = /^[A-ZА-ЯІЇЄҐA-Z0-9'-]*$/u;
+
+    if (!nameRegex.test(firstName)) {
+        document.getElementById("firstName").classList.add("input-error");
+        openErrorModal("Name must contain only Ukrainian or Latin letters, apostrophes, and hyphens.");
+        return;
+    }
+
+    if (!nameRegex.test(lastName)) {
+        document.getElementById("lastName").classList.add("input-error");
+        openErrorModal("Name must contain only Ukrainian or Latin letters, apostrophes, and hyphens.");
+        return;
+    }
+
+    if (!groupRegex.test(group)) {
+        document.getElementById("group").classList.add("input-error");
+        openErrorModal("Group must contain only letters, numbers, apostrophes, and hyphens.");
+        return;
+    } 
+
+    let student = { group, firstName, lastName, gender, status: "active", birthDate };
+
     if (editingIndex !== -1) {
-        students[editingIndex] = { group, firstName, lastName, gender, status: "active", birthDate };
+        students[editingIndex] = student;
+        console.log("Updated student:", JSON.stringify(student));
     } else {
         if (!group || !firstName || !lastName || !gender || !birthDate) return;
-        students.push({ group, firstName, lastName, gender, status: "active", birthDate });
+        const id = generateStudentID();
+        student.id = id;
+        students.push(student);
+        console.log("Added student:", JSON.stringify(student));
     }
 
     localStorage.setItem('students', JSON.stringify(students));
@@ -206,11 +251,40 @@ function saveStudent() {
     closeStudentModal();
 }
 
+function openErrorModal(errorMessage) {
+    document.getElementById("errorModal").style.display = "block";
+    document.getElementById("errorMessage").innerText = errorMessage;
+}
+
+function closeErrorModal() {
+    document.getElementById("errorModal").style.display = "none";
+    setTimeout(function() {
+        document.getElementById("group").classList.remove("input-error");
+        document.getElementById("firstName").classList.remove("input-error");
+        document.getElementById("lastName").classList.remove("input-error");
+    }, 2000);
+}
+
+
 function openDeleteModal(index) {
+    const students = JSON.parse(localStorage.getItem('students')) || [];
+    console.log('openStudent...')
     const modal = document.getElementById("deleteModal");
+    const student = students[index]; 
     modal.dataset.index = index; 
     modal.style.display = "block";
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close" onclick="closeDeleteModal()">&times;</span>
+            <h2>Delete Student</h2>
+            <p>Are you sure you want to delete student ${student.firstName} ${student.lastName}?</p>
+            <button type="button" id="cancelDeleteButton" onclick="closeDeleteModal()">Cancel</button>
+            <button type="submit" id="deleteStudentButton" onclick="deleteStudent(${index})">Delete</button>
+        </div>
+    `;
+    
 }
+
 
 function closeDeleteModal() {
     document.getElementById("deleteModal").style.display = "none";

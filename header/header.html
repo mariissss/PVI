@@ -23,7 +23,7 @@
         <div class="notifications" onmouseover="showNotifications()" onmouseout="hideNotifications()">
             <div class="bell">
                 <!--                                    redirectToMessages -->
-                <button class="bell-container" onclick="animatedBell()">
+                <button class="bell-container" onclick="animatedBell()"  aria-label="Notifications">
                     <i class="fa-regular fa-bell"></i>
                     <i class="fa-solid fa-bell"></i>
                     <span class="indicator"></span> 
@@ -33,18 +33,24 @@
                 <span class="rec-mes">Recent messages</span>
                 <ul id="notifications-list">
                     <li>
-                        <img src="/images/avatar1.jpg" alt="avatar">
-                        <span class="avatar-name">Andrii</span>
+                        <div class="avatarr">
+                            <img src="/images/avatar1.jpg" alt="avatar">
+                            <span class="avatar-name">Andrii</span>
+                        </div>
                         <span class="rec-message">Гослінг топ</span>
                     </li>
                     <li>
+                        <div class="avatarr">
                         <img src="/images/avatar2.jpg" alt="avatar">
                         <span class="avatar-name">Vitko</span>
-                        <span class="rec-message">Ти лох</span>
+                        </div>
+                        <span class="rec-message">Ляляля</span>
                     </li>
                     <li>
+                        <div class="avatarr">
                         <img src="/images/avatar3.jpg" alt="avatar">
                         <span class="avatar-name">Julia</span>
+                        </div>
                         <span class="rec-message">Кохаю Тараса</span>
                     </li>
                 </ul>
@@ -61,3 +67,4 @@
         </div>
     </div>
 </header>
+<script src="/app.js"></script>

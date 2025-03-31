@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="students.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/images/icons/icon96.png">
+    <meta name="apple-mobile-web-app-status-bar" content="#cccccc">
 </head>
 
 <body>
@@ -75,6 +77,8 @@
                     <span class="close" onclick="closeStudentModal()">&times;</span>
                     <h2 id="modalTitle">Add Student</h2>
                     <form id="studentForm" lang="en">
+                        <input type="hidden" id="studentId" name="id">
+
                         <label for="group">Group:</label>
                         <input type="text" id="group" required="">
 
@@ -120,8 +124,18 @@
                 </div>
             </div>
 
+            <div id="errorModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeErrorModal()">&times;</span>
+                    <h2>Error</h2>
+                    <p id="errorMessage">lalala</p>
+                    <button type="submit" id="cancelDeleteButton" onclick="closeErrorModal()">Ok</button>
+                </div>
+            </div>
+
         </main>
     </div>
+    <script src="/app.js"></script>
     <script src="/header/header.js"></script>
     <script src="students.js"></script>
 </body>

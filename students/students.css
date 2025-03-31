@@ -13,9 +13,9 @@ main {
     margin-left: 16vw;
 }
 
-label[for^="checkbox-"] {
-    opacity: 0; 
-}
+/* label[for^="checkbox-"] {
+    opacity: ; 
+} */
 
 .students-table-container {
     width: 100%;
@@ -169,20 +169,44 @@ td button:hover {
     .students-table th, .students-table td {
         padding: 0.5vw;
     }
+
+    td:last-child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 1px;
+        gap: 6px;
+    }
+    
+    td button {
+        background: #b4513b;
+        border-radius: 3px;
+        cursor: pointer;
+        padding: 0.5vw; 
+        font-size: 1.5vw;
+    }
+    
+    td button img {
+        width: 5vw; 
+        height: 5vw;
+        transition: transform 0.2s;
+    }
+    
+    td button:hover img {
+        transform: scale(1.1);
+    }
+    
+    td button:hover {
+        background: #b4513b71;
+    }
+
+    .students-table input[type="checkbox"] {
+        border-radius: 3px;
+        width: 3vw; 
+        height: 3vw;
+    }
 }
 
-@media (max-width: 480px) {
-    .students-table {
-        font-size: 2.5vw;
-    }
-    .students-table th, .students-table td {
-        padding: 0.3vw;
-    }
-    .students-table th:nth-child(4),
-    .students-table td:nth-child(4) {
-        display: none;
-    }
-}
 
 .upper {
     display: flex;
@@ -256,6 +280,24 @@ h1 {
     }
 }
 
+@media (max-width: 630px) {
+    .upper {
+        margin-top: 19vw;
+        justify-content: center;
+    }
+    h1 {
+        font-size: 3vw;
+    }
+    .buttons {
+        gap: 2px;
+    }
+    .addStudentButton img, 
+    .deleteStudentButton img {
+        width: 13px;
+        height: 13px;
+    }
+}
+
 @media (max-width: 576px) {
     h1 {
         font-size: 4vw;
@@ -287,7 +329,43 @@ h1 {
     }
 }
 
-#studentModal, #deleteModal, #deleteSelectedModal {
+@media (max-width: 450px) {
+    .upper {
+        justify-content: center;
+    }
+    h1 {
+        font-size: 4vw;
+    }
+    .buttons {
+        gap: 2px;
+    }
+    .addStudentButton img, 
+    .deleteStudentButton img {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 320px) {
+    .upper {
+        margin-top: 19vw;
+        justify-content: center;
+    }
+    h1 {
+        font-size: 3vw;
+    }
+    .buttons {
+        gap: 2px;
+    }
+    .addStudentButton img, 
+    .deleteStudentButton img {
+        width: 13px;
+        height: 13px;
+    }
+}
+
+
+#studentModal, #deleteModal, #deleteSelectedModal, #errorModal {
     display: none; 
     position: fixed;
     z-index: 1000;
@@ -345,6 +423,12 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+#studentForm input.input-error,
+#studentForm select.input-error {
+    border: 2px solid red; 
+}
+
 
 #saveStudentButton, #cancelDeleteButton, #cancelSelectedDeleteButton  {
     background-color: #4caf4fe1;
@@ -538,6 +622,28 @@ h1 {
         font-size: 20px;
         display: block;
     }
+}
+
+/* (max-width: 367px) */
+
+@media (max-width: 630px) {
+    .side-menu ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 12px;
+        display: block;
+        margin-top: 22px;
+    }
+
+    .side-menu{
+        top: 25px;
+        width: 150px; 
+    }
+
+    .burger-menu {
+        top: 76px;
+    }
+
 }
 
 

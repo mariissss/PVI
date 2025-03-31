@@ -9,7 +9,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #333;
+    background-color: #333333;
     color: white;
     width: 100%;
     position: fixed;
@@ -112,6 +112,129 @@ body {
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
+
+@media (max-width: 1200px) {
+    .notifications-popup {
+        width: 230px;
+        font-size: 15px;
+    }
+    .rec-mes {
+        width: 160px;
+    }
+}
+
+@media (max-width: 992px) {
+    .notifications-popup {
+        width: 200px;
+        font-size: 14px;
+        padding: 10px;
+    }
+    .rec-mes {
+        width: 140px;
+        font-size: 14px;
+    }
+    #notifications-list li {
+        gap: 5px;
+    }
+    .rec-message {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .notifications {
+        margin-left: 5px;
+    }
+    .notifications-popup {
+        width: 180px;
+        font-size: 13px;
+        padding: 8px;
+    }
+    .rec-mes {
+        width: 130px;
+        font-size: 13px;
+    }
+    .avatar-name {
+        font-size: 15px;
+    }
+    .rec-message {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .notifications-popup {
+        width: 160px;
+        padding: 6px;
+    }
+    .rec-mes {
+        width: 120px;
+        font-size: 12px;
+        padding: 3px;
+    }
+    .avatar-name {
+        font-size: 14px;
+    }
+    .rec-message {
+        font-size: 13px;
+    }
+    #notifications-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+    }
+}
+
+@media (max-width: 400px) {
+    .notifications-popup {
+        width: 140px;
+        padding: 5px;
+    }
+    .rec-mes {
+        width: 110px;
+        font-size: 11px;
+        padding: 2px;
+    }
+    .avatar-name {
+        font-size: 13px;
+    }
+    .rec-message {
+        font-size: 12px;
+    }
+    #notifications-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+}
+
+@media (max-width: 320px) {
+    .notifications-popup {
+        width: 100px;
+        padding: 5px;
+    }
+    .rec-mes {
+        width: 110px;
+        font-size: 11px;
+        padding: 2px;
+    }
+    .avatar-name {
+        font-size: 13px;
+    }
+    .rec-message {
+        font-size: 12px;
+    }
+    #notifications-list li {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .avatarr {
+        flex-direction: row;
+    }
+}
+
 
 #notifications-list li:hover {
     background-color: #f2ecc6; 
@@ -265,6 +388,8 @@ button {
 .bell-container.active .indicator {
     display: block;
 }
+
+
 
 @media (min-width: 1200px) {
     .site-name {
